@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bg: red;
+    --text: black;
+}
+.dark {
+    --bg: linear-gradient(to right, #868f96 0%, #596164 100%);;
+    --text: white;
+    transition: background-color 1s ease;
+    background:  var(--bg);
+}
+
+.light {
+    --bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);;
+    --text: black;
+    transition: background-color 1s ease;
+    background:  var(--bg);
+}
+
+.wholebody {
+    color: var(--text);
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    transition: background-color 0.5s ease , color 1s ease;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+h6 {
+    font-size: 50px;
+    font-family: sans-serif;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    text-shadow: #596164
+}
+
+p {
+    position: absolute;
+    bottom:16px;
+    right: 16px;
+}
+
+
+
+
+@import './sass/navbar';
+@import './sass/about';

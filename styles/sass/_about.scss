@@ -1,0 +1,46 @@
+.about_root {
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 16px;
+    align-items: center;
+    color: var(--text);
+    transition: background-color 0.5s ease , color 2s ease;
+    .second_section {
+        height: 60vh;
+        width: 50%;
+        animation: spin 4s infinite linear;
+        position: relative;
+        transform-style: preserve-3d;
+        svg {
+            position: absolute;
+            height: auto;
+            width: 100%;
+        }
+        ::after {
+            content: '';
+            clip-path: ellipse(50% 25% at 50% 50%);
+            width: 100px;
+            height: 50px;
+            background-color: black;
+        }
+    }
+}
+
+@keyframes spin {
+    0%   {
+        transform: rotateY(0);
+    }
+    25%  {
+        transform: rotateY(50deg);   
+        }
+    50%  {
+        transform: rotateY(100deg);      
+    }
+    75% {
+        transform: rotateY(50deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+        }   
+}
