@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -7,13 +7,17 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 const Animation = () => {
 
         const [loading ,setLoading] = useState(0);
+        const canvasRef = useRef();
+        const [loader, setLoader] = useState(new GLTFLoader())
+        const [scene , setScene] = useState(new THREE.Scene())
+        const [camera , setCamera ] = useState(new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ))
+        const [renderer , setRenderer] = useState(new THREE.WebGLRenderer({
+            alpha:true,
+            canvas: canvasRef.current
+        }))
+
+
         useEffect(() => {
-            const loader = new GLTFLoader();
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-            const renderer =  new THREE.WebGLRenderer({
-                alpha:true,
-            });
 
             const light = new THREE.AmbientLight( 0x404040 ); // soft white light
             light.intensity = 3;
@@ -72,18 +76,25 @@ const Animation = () => {
             window.addEventListener('resize',handlewindowResize)
             function  handlewindowResize(){
                     // Update camera
-                    camera.aspect = window.innerWidth / window.innerHeight;
+                    const {current : container} = canvasRef;
+                    camera.aspect = container.clientWidth / container.clientHeight;
                     camera.updateProjectionMatrix();
                     // Update renderer
-                    renderer.setSize(window.innerWidth, window.innerHeight)
+                    renderer.setSize(container.clientWidth, container.clientHeight)
                     renderer.render(scene, camera);
                 };
         },[])
 
     return(
-        <div>
-        </div>
-    )   
+    <>
+    {loading > 100 ? 
+    <canvas ref={canvasRef} style={{height: '100%' , width: '100%'}} >
+        </canvas>
+        : 
+        <p>loading ... {loading}%</p>
+    }        
+       </>
+    )
 }
 
 export default React.memo(Animation)
