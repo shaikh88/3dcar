@@ -15,6 +15,17 @@ export default function App() {
 
   useEffect(() => setLoading(true),[]);
 
+  const sendEmail = async() => {
+    let res = await fetch('/api/sendemail',{
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify("Hello there I am the response")
+    })
+    let result  = await JSON.parse(res);
+    console.log(result);
+  }
+
   {/* <Head> */}
   {/* <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
