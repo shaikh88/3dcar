@@ -1,0 +1,28 @@
+.main_section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 64px;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+        img {
+        height: 50%;
+        width: auto;
+        object-fit: contain;
+        filter:drop-shadow(8px 8px 10px gray);
+        transform-style: preserve-3d;
+        animation: rotateanimation 1s ease-in-out 0s;
+    }
+}
+
+.type_writer {
+    color : white;
+}
+
+@keyframes rotateanimation {
+    from {transform: translateY(100%)}
+    to {transform: translateY(0%)}  
+}
+
